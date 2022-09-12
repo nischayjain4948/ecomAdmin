@@ -1,0 +1,105 @@
+
+.nav-ul{
+
+  padding: 5px;
+  margin: 0px;
+  background-color:#c0c0c0;
+
+}
+
+
+.nav-ul li{
+
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+
+}
+
+.nav-ul li a{
+
+  color: black;
+  padding: 5px;
+
+
+
+}
+
+
+.footer{
+
+  position:absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  background-color: #c0c0c0;
+
+}
+
+
+
+.sign-up{
+
+  margin-left: 30%;
+  margin-top: 100px;
+  justify-items: center;
+
+
+}
+
+.inputbox{
+ 
+
+  display: block;
+  margin: 30px;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #c0c0c0;
+  font-size: 16px;
+
+}
+
+
+.appbutton{
+
+  margin: 25px;
+  padding: 10px;
+  width: 150px;
+  background-color: #c0c0c0;
+  border: 1px solid ;
+  cursor: pointer;
+
+
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
