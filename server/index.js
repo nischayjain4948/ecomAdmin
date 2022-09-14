@@ -1,14 +1,25 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
+const User = require('./db/User');
 
+const cors = require('cors');
+
+
+// Package used for resolve the cors error!
+app.use(cors());
+
+// This is a kind of middle ware 
 app.use(express.json());
 
+//. Enivroment
 dotenv.config();
 
+
+// requring the DataBase 
 require('./db/config');
 
-const User = require('./db/User');
+
 
 
 app.post('/register', async (req,res)=>{
@@ -17,8 +28,11 @@ app.post('/register', async (req,res)=>{
   let result =  await user.save()
   res.send(result)
 
+  if(!result){
 
+    console.log("Duplicate email");
 
+  }
 
 
 })
@@ -29,6 +43,6 @@ app.post('/register', async (req,res)=>{
 
 app.listen(process.env.PORT || 4200,()=>{
 
-    console.log("App is running on port ", 4300 );
+    console.log("App is running on port ");
 
 })

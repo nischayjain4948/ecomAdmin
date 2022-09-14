@@ -21,11 +21,6 @@ const SignUp = () => {
 
 
 
-
-
-
-
-
   // Login Handle
 
   function loginHandle(e){
@@ -116,7 +111,7 @@ setPassword(invalidPassword);
 
 
 
-const getData = ()=>{
+const getData = async ()=>{
 
 
   if(name ==="" || email === "" || password === ""){
@@ -131,7 +126,23 @@ const getData = ()=>{
     setAllSet(false);
     setSuccess(true);
 
-console.log(name, email, password);
+// console.log(name, email, password);
+
+let result = await fetch("http://localhost:5000/register", {
+
+method:"POST",
+
+// use the JSON.stringify 
+body:JSON.stringify({name,email,password}),
+headers:{
+  'Content-Type':'application/json'
+},
+
+});
+
+
+let resp = await result.json();
+console.log(resp);
 
 
  }
@@ -139,10 +150,6 @@ console.log(name, email, password);
 }
 
   
-
-
-
-
   return (
     <form onSubmit={loginHandle}>
     <div className='sign-up'>

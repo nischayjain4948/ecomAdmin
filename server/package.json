@@ -9,6 +9,7 @@
   "author": "nischay jain",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "mongoose": "^5.13.5",
