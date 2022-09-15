@@ -1,5 +1,8 @@
 import React, {useState} from 'react'
 
+import {useNavigate} from 'react-router-dom';
+
+
 
 
 const SignUp = () => {
@@ -14,10 +17,11 @@ const SignUp = () => {
   const [emailErr, setEmailErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
 
-
   const [allset, setAllSet] = useState(false);
 
   const [success, setSuccess] = useState(false);
+
+  const [alreadyExist, setAlreadyExist] = useState(false);
 
 
 
@@ -29,6 +33,13 @@ const SignUp = () => {
 
 
   }
+
+
+
+  
+// useNavigate for redirect the page!
+const navigate = useNavigate();
+
 
 
 
@@ -124,15 +135,15 @@ const getData = async ()=>{
 
   
     setAllSet(false);
-    setSuccess(true);
+    // setSuccess(true);
 
-// console.log(name, email, password);
+
 
 let result = await fetch("http://localhost:5000/register", {
 
 method:"POST",
 
-// use the JSON.stringify 
+// use the JSON.stringify  api always use json stringfy 
 body:JSON.stringify({name,email,password}),
 headers:{
   'Content-Type':'application/json'
@@ -144,8 +155,26 @@ headers:{
 let resp = await result.json();
 console.log(resp);
 
+if(resp.success === true){
 
- }
+
+  setSuccess(true);
+  navigate('/');
+
+
+
+
+}
+else{
+
+setAlreadyExist(true);
+
+}
+
+
+
+
+}
 
 }
 
@@ -155,7 +184,7 @@ console.log(resp);
     <div className='sign-up'>
 
         <input className='inputbox' type="text"  onChange={userHandler} placeholder='Enter Your Name'  required/>{nameErr?<span style={{color:"red", fontSize:"16px", marginLeft:"28px"}}>Note: valid name format Example: ramesh </span>:""}
-        <input className='inputbox'  type="email" onChange={emailHandler} placeholder='Enter Email'  pattern=".+@globex\.com" size="30" required />{emailErr?<span style={{color:"red",fontSize:"16px",marginLeft:"28px"}}>Note: valid email format Example: ramesh@mail.com</span>:""}
+        <input className='inputbox'  type="email" onChange={emailHandler} placeholder='Enter Email'  pattern=".+@globex\.com" size="30" required />{emailErr?<span style={{color:"red",fontSize:"16px",marginLeft:"28px"}}>Note: valid email format Example: ramesh@mail.com</span>:"" }
         <input className='inputbox'  type="text" onChange={passwordHandler} placeholder='Enter Password' required />{passwordErr?<span style={{color:"red",fontSize:"16px", marginLeft:"28px"}}>Note: password must be alphanumeric one upper one lower   Example: Ramesh@123  </span>:""}
 
     {nameErr || emailErr || passwordErr ? "":
@@ -165,7 +194,16 @@ console.log(resp);
  
 {allset?<span style={{color:"red"}}>Fill all the  field!</span>:""}
 
-{success? <span style={{color:"green"}}>You are Registered Successfully!</span>:""}
+
+
+
+
+
+
+{success? <span style={{color:"green"}}>You are Registered Successfully!</span>:"" }
+
+
+{ alreadyExist ? <span style={{color:"red",fontSize:"16px",marginLeft:"28px"}}>This email is Already Registerd choose another!</span>:""}
 
 
 
