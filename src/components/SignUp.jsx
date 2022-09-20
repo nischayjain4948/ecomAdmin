@@ -1,6 +1,11 @@
 import React, {useState} from 'react'
 
 import {useNavigate} from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+
+
+
+
 
 
 
@@ -138,13 +143,20 @@ const getData = async ()=>{
     // setSuccess(true);
 
 
+   let uuid =  uuidv4();
+
+    
+
+   console.log(name, email,password, uuid);
+
 
 let result = await fetch("http://localhost:5000/register", {
 
 method:"POST",
 
 // use the JSON.stringify  api always use json stringfy 
-body:JSON.stringify({name,email,password}),
+body:JSON.stringify({name,email,password,uuid}),
+
 headers:{
   'Content-Type':'application/json'
 },
@@ -159,6 +171,7 @@ if(resp.success === true){
 
 
   setSuccess(true);
+  localStorage.setItem("u_id", JSON.stringify(uuid));
   navigate('/');
 
 

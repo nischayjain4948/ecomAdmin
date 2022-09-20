@@ -16,6 +16,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+
+    uuid:{
+
+      type:String,
+      require:true
+    },
     
   },
   { timestamps: true }

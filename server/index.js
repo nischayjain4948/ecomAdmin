@@ -24,20 +24,27 @@ require('./db/config');
 
 app.post('/register', async (req,res)=>{
 
+
+  console.log(req.body);
+
+
   let user = new User(req.body);
  await user.save(function(err){
     if(err){
       // Duplicate username
       if (err.name === 'MongoError' && err.code === 11000) {
         // Duplicate username
+
        
-        return res.status(422).json({ succes: false, message: 'User already exist!' });
+        return res.status(422).json({ succes: false, message: 'User already exist!'  });
       }
 
       return res.status(422).send(err);
     }
     res.json({
       success: true
+
+
     });
   })
  
